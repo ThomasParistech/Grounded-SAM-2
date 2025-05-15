@@ -32,6 +32,7 @@ run:
 	docker run --gpus all -it --rm --net=host --privileged \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "${PWD}":/home/appuser/Grounded-SAM-2 \
+	-v "/data":/home/appuser/shared_data \
 	-e DISPLAY=$DISPLAY \
 	--name=gsa \
 	--ipc=host -it grounded_sam2:1.0
