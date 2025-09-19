@@ -26,6 +26,8 @@ import torch
 import glob
 import os
 
+FORCE_CPU = True
+
 
 def get_extensions():
     this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,7 +46,7 @@ def get_extensions():
     extra_compile_args = {"cxx": []}
     define_macros = []
 
-    if CUDA_HOME is not None and (torch.cuda.is_available() or "TORCH_CUDA_ARCH_LIST" in os.environ):
+    if not FORCE_CPU and CUDA_HOME is not None and (torch.cuda.is_available() or "TORCH_CUDA_ARCH_LIST" in os.environ):
         print("Compiling with CUDA")
         extension = CUDAExtension
         sources += source_cuda
